@@ -11,7 +11,7 @@ const username = ref(''); // می‌تونی این رو از سمت سرور ب
 
 onMounted(async () => {
   try {
-    const response = await axios.get('http://localhost:8000/api/tokens', {
+    const response = await axios.get('http://185.215.244.59/api/tokens', {
       headers: {
         Authorization: 'Bearer ' + token,
       },

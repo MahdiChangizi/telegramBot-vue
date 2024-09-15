@@ -8,15 +8,15 @@
                 <Progress :model-value="progressValues[0]" class="h-1" />
             </div>
             <div class="flex flex-col items-start gap-2">
-                <p class="text-sm font-semibold">Checking Telegram Premium</p>
+                <p class="text-sm font-semibold">Checking the age of the account</p>
                 <Progress :model-value="progressValues[1]" class="h-1" />
             </div>
             <div class="flex flex-col items-start gap-2">
-                <p class="text-sm font-semibold">Checking Telegram Premium</p>
+                <p class="text-sm font-semibold">Activity analysis</p>
                 <Progress :model-value="progressValues[2]" class="h-1" />
             </div>
             <div class="flex flex-col items-start gap-2">
-                <p class="text-sm font-semibold">Checking Telegram Premium</p>
+                <p class="text-sm font-semibold">Checking the profile filling</p>
                 <Progress :model-value="progressValues[3]" class="h-1" />
             </div>
         </div>
@@ -48,9 +48,9 @@ const animateProgress = (index: number, targetValue: number, callback?: () => vo
 
 onMounted(() => {
     animateProgress(0, 100, () => {
-        animateProgress(1, 80, () => {
-            animateProgress(2, 60, () => {
-                animateProgress(3, 40, () => {
+        animateProgress(1, 100, () => {
+            animateProgress(2, 100, () => {
+                animateProgress(3, 100, () => {
                     setTimeout(() => {
                         router.push({
                             path: '/',
