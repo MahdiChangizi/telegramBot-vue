@@ -9,10 +9,9 @@ const token = useRoute().query.token;
 const total_token = ref(0);
 const username = ref(''); // می‌تونی این رو از سمت سرور بگیری
 
-
 onMounted(async () => {
   try {
-    const response = await axios.get('http://localhost:8000/api/tokens', {
+    const response = await axios.get('http://185.215.244.59/api/tokens', {
       headers: {
         Authorization: 'Bearer ' + token,
       },
