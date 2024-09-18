@@ -22,7 +22,7 @@ const allData = ref<DataInterface | null>(null);
 
 onMounted(async () => {
   try {
-    const response = await axios.get('http://185.215.244.59/api/leaderboard', {
+    const response = await axios.get('https://punk1210.com/api/leaderboard', {
       headers: {
         Authorization: 'Bearer ' + token,
       },
