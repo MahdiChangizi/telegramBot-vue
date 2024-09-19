@@ -14,7 +14,7 @@ const token = useRoute().query.token
 
 interface DataInterface {
   total_users: number;
-  top_users: { telegram_id: number; username: string, tokens_amount: number, first_name: string }[];
+  top_users: { telegram_id: number; username: string, tokens_sum_amount: number, first_name: string }[];
   current_user: { id: number, first_name: string; username: string; tokens_amount: number };
 }
 
@@ -76,7 +76,7 @@ onMounted(async () => {
 
                             <div class="flex flex-col justify-center">
                                 <h1>{{ data.username }}</h1>
-                                <h1>{{ data.tokens_amount ? data.tokens_amount.toLocaleString() : '0' }} Depintech</h1>
+                                <h1>{{ data.tokens_sum_amount ? data.tokens_sum_amount.toLocaleString() : '0' }} Depintech</h1>
                             </div>
                         </div>
                     

@@ -400,10 +400,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="bg-gradient-to-t from-black via-[#06261a] to-[#137543] w-full h-full min-h-screen text-white flex flex-col items-center justify-center p-4 overflow-auto">
+  <div class="bg-gradient-to-t from-black via-[#06261a] to-[#137543] w-full min-h-screen text-white flex flex-col items-center justify-start p-4 overflow-y-auto py-20">
     <h1 class="text-3xl font-bold mb-8 text-center">Spin & Win!</h1>
 
-    <div class="relative w-64 h-64 mb-8">
+    <div class="relative w-64 h-64 mb-8 flex-shrink-0">
       <div ref="wheel" class="w-full h-full rounded-full overflow-hidden shadow-2xl border-8 border-green-400" :style="wheelStyle"></div>
       <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-16">
         <svg viewBox="0 0 30 60" class="w-full h-full">
@@ -412,24 +412,24 @@ onMounted(() => {
       </div>
     </div>
 
-    <div class="grid grid-cols-3 gap-4 mb-8 bg-gray-950 bg-opacity-70 p-4 rounded-lg">
+    <div class="grid grid-cols-3 gap-4 mb-8 bg-gray-950 bg-opacity-70 p-4 rounded-lg w-full max-w-md">
       <div v-for="prize in prizes" :key="prize.value" class="flex items-center">
-        <div class="w-4 h-4 rounded-full mr-2" :style="{ backgroundColor: prize.color }"></div>
+        <div class="w-4 h-4 rounded-full mr-2 flex-shrink-0" :style="{ backgroundColor: prize.color }"></div>
         <span class="text-sm">{{ prize.value }} tokens</span>
       </div>
     </div>
 
-    <button
-      @click="spinWheel"
-      :disabled="!canSpin || isSpinning"
-      class="px-8 py-3 rounded-full text-lg font-bold transition-all"
-      :class="canSpin && !isSpinning ? 'bg-green-500 hover:bg-green-600 text-white' : 'bg-gray-500 text-gray-300 cursor-not-allowed'"
+    <button 
+      @click="spinWheel" 
+      :disabled="!canSpin || isSpinning" 
+      class="px-8 py-3 rounded-full text-lg font-bold transition-all mb-4"
+      :class="canSpin && !isSpinning ? 'bg-green-500 hover:bg-green-600 text-white' : 'bg-gray-500 text-gray-300 cursor-not-allowed'" 
     >
       {{ isSpinning ? 'Spinning...' : 'SPIN' }}
     </button>
 
-    <p v-if="result" class="mt-4 text-xl font-semibold text-green-400">{{ result }}</p>
-    <p v-if="!canSpin && !isSpinning" class="mt-2 text-red-400">You can spin once every 24 hours.</p>
+    <p v-if="result" class="mt-4 text-xl font-semibold text-green-400 text-center">{{ result }}</p>
+    <p v-if="!canSpin && !isSpinning" class="mt-2 text-red-400 text-center">You can spin once every 24 hours.</p>
   </div>
 </template>
 

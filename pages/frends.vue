@@ -1,32 +1,50 @@
 <script setup lang="ts">
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/ui/button';
+import axios from 'axios';
 
 //bot url
 const inviteLink = ref('')
 
-const shareInviteLink = () => {
-  copyInviteLink();
+// const shareInviteLink = () => {
+//   copyInviteLink();
 
-  if (navigator.share) {
-    navigator.share({
-      title: 'Invite Friends',
-      text: 'Join me on this awesome platform!',
-      url: inviteLink.value,
-    }).then(() => {
-      console.log('Invitation shared successfully');
-    }).catch(err => {
-      console.error('Error in sharing: ', err);
-    });
-  } else {
-    console.log('Web Share API not supported in this browser');
-  }
-}
+//   if (navigator.share) {
+//     navigator.share({
+//       title: 'Invite Friends',
+//       text: 'Join me on this awesome platform!',
+//       url: inviteLink.value,
+//     }).then(() => {
+//       console.log('Invitation shared successfully');
+//     }).catch(err => {
+//       console.error('Error in sharing: ', err);
+//     });
+//   } else {
+//     console.log('Web Share API not supported in this browser');
+//   }
+// }
 
 const copyInviteLink = () => {
   navigator.clipboard.writeText(inviteLink.value).catch(err => {
     console.error('Failed to copy text: ', err)
   })
 }
+
+
+const token = useRoute().query.token
+
+
+onMounted(async () => {
+  try {
+    const response = await axios.get('https://punk1210.com/api/invite-code', {
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    });
+    inviteLink.value = `https://t.me/laravel_changizi_bot?start=${response.data.invite_code}`;
+  } catch (error) {
+    console.error('Error fetching token data:', error);
+  }
+});
 </script>
 
 <template>
@@ -40,7 +58,7 @@ const copyInviteLink = () => {
       </div>
 
       <Button 
-        @click="shareInviteLink" 
+        @click="copyInviteLink" 
         class="w-full py-6 text-lg font-semibold hover:bg-[#25ff8f] bg-[#25ff8f] text-black mb-5 rounded-xl"
       >
         Share Invite Link
