@@ -40,7 +40,7 @@ onMounted(async () => {
         Authorization: 'Bearer ' + token,
       },
     });
-    inviteLink.value = `https://t.me/laravel_changizi_bot?start=${response.data.invite_code}`;
+    inviteLink.value = `https://t.me/Depintech_bot?start=${response.data.invite_code}`;
   } catch (error) {
     console.error('Error fetching token data:', error);
   }
